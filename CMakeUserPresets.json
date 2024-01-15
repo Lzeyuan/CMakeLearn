@@ -7,12 +7,20 @@
         "strategy": "external"
       },
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
+        "CMAKE_CONFIGURATION_TYPES": "Debug"
       },
-      "displayName": "Cpp20",
+      "displayName": "Cpp20 Debug",
       "generator": "Visual Studio 17 2022",
       "inherits": "windows-base",
-      "name": "Cpp20"
+      "name": "cpp20-debug"
+    },
+    {
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "Release"
+      },
+      "displayName": "Cpp20 Release",
+      "inherits": "cpp20-debug",
+      "name": "cpp20-release"
     }
   ]
 }
