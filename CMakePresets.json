@@ -1,0 +1,50 @@
+﻿{
+  "version": 3,
+  "configurePresets": [
+    {
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "generator": "Ninja",
+      "hidden": true,
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "name": "windows-base"
+    },
+    {
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "strategy": "set",
+        "value": "x64"
+      },
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;"
+      },
+      "displayName": "Cpp20",
+      "inherits": "windows-base",
+      "name": "cpp20"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug-build",
+      "displayName": "Debug",
+      "configurePreset": "cpp20",
+      "configuration": "Debug",
+      "verbose": true
+    },
+    {
+      "name": "release-build",
+      "displayName": "Release",
+      "configurePreset": "cpp20",
+      "configuration": "Release",
+      "verbose": true
+    }
+  ]
+}
