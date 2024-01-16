@@ -3,8 +3,9 @@
 
 # 环境
 - Winodwos11
-- VS2022
-- CMake > 3.12：为了支持c++20模块
+- ~~VS2022~~（智能提示有bug） 
+- clion nova
+- CMake > 3.25：为了支持c++20模块
 - 第三方库：
 [GLFW](https://www.glfw.org/download.html)、
 [GLAD](https://glad.dav1d.de/)
@@ -59,10 +60,6 @@ Invoke-Expression $fullCommand
     "strategy": "set",
     "value": "x64"
 },
-"cacheVariables": {
-    "CMAKE_CONFIGURATION_TYPES": "Debug;",
-    "CMAKE_BUILD_TYPE": "Debug"
-}
 ```
 **生成器是Ninja时**
 ```json
@@ -71,9 +68,6 @@ Invoke-Expression $fullCommand
     "strategy": "external",
     "value": "x64"
 },
-"cacheVariables": {
-    "CMAKE_BUILD_TYPE": "Debug"
-}
 ```
 
 `buildPresets`：用于CMake编译阶段添加参数，下面是编译时VS所需参数<br>
