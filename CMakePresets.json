@@ -24,25 +24,33 @@
         "value": "x64"
       },
       "cacheVariables": {
-        "CMAKE_CONFIGURATION_TYPES": "Debug;Release;"
+        "CMAKE_BUILD_TYPE": "Debug"
       },
-      "displayName": "Cpp20",
+      "displayName": "Cpp20 Debug",
       "inherits": "windows-base",
-      "name": "cpp20"
+      "name": "cpp20-debug"
+    },
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "displayName": "Cpp20 Release",
+      "inherits": "cpp20-debug",
+      "name": "cpp20-release"
     }
   ],
   "buildPresets": [
     {
       "name": "debug-build",
       "displayName": "Debug",
-      "configurePreset": "cpp20",
+      "configurePreset": "cpp20-debug",
       "configuration": "Debug",
       "verbose": true
     },
     {
       "name": "release-build",
       "displayName": "Release",
-      "configurePreset": "cpp20",
+      "configurePreset": "cpp20-release",
       "configuration": "Release",
       "verbose": true
     }
