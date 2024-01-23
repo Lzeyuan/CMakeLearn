@@ -2,7 +2,12 @@
   "version": 3,
   "configurePresets": [
     {
+      "name": "windows-base",
+      "description": "面向具有 Visual Studio 开发环境的 Windows。",
+      "hidden": true,
+      "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl.exe",
         "CMAKE_CXX_COMPILER": "cl.exe"
@@ -11,46 +16,57 @@
         "type": "equals",
         "lhs": "${hostSystemName}",
         "rhs": "Windows"
-      },
-      "generator": "Ninja",
-      "hidden": true,
-      "installDir": "${sourceDir}/out/install/${presetName}",
-      "name": "windows-base"
+      }
     },
     {
-      "generator": "Visual Studio 17 2022",
-      "architecture": {
-        "strategy": "set",
-        "value": "x64"
-      },
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
-      },
-      "displayName": "Cpp20 Debug",
+      "name": "x64-debug",
+      "displayName": "x64 Debug",
+      "description": "使用 Visual Studio 开发环境定向到 Windows (64 位)。(Debug)",
       "inherits": "windows-base",
-      "name": "cpp20-debug"
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
     },
     {
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
+      "name": "x64-release",
+      "displayName": "x64 Release",
+      "description": "使用 Visual Studio 开发环境定向到 Windows (64 位)。(RelWithDebInfo)",
+      "inherits": "x64-debug",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "x86-debug",
+      "displayName": "x86 Debug",
+      "description": "用 Visual Studio 开发环境定向到 Windows (32 位)。(Debug)",
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
       },
-      "displayName": "Cpp20 Release",
-      "inherits": "cpp20-debug",
-      "name": "cpp20-release"
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "x86-release",
+      "displayName": "x86 Release",
+      "description": "用 Visual Studio 开发环境定向到 Windows (32 位)。(RelWithDebInfo)",
+      "inherits": "x86-debug",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
     }
   ],
   "buildPresets": [
     {
       "name": "debug-build",
       "displayName": "Debug",
-      "configurePreset": "cpp20-debug",
+      "configurePreset": "x64-debug",
       "configuration": "Debug",
       "verbose": true
     },
     {
       "name": "release-build",
       "displayName": "Release",
-      "configurePreset": "cpp20-release",
+      "configurePreset": "x64-release",
       "configuration": "Release",
       "verbose": true
     }
